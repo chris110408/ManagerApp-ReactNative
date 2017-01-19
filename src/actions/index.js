@@ -1,9 +1,18 @@
 /**
  * Created by leichen on 2017/1/16.
  */
-export const selectionLibrary = (libraryId) => {
+import { EMAIL_CHANGE,PASSWORD_CHANGE} from './type'
+
+export const emailChanged = (libraryId) => {
     return {
-        type: 'select_library',
+        type: EMAIL_CHANGE,
         payload: libraryId
+    }
+}
+
+export const passwordChanged = (password) => {
+    return {
+        type: PASSWORD_CHANGE,
+        payload: password
     }
 }
