@@ -6,8 +6,10 @@ import {
     Text,
     View
 } from 'react-native';
+import firebase from 'firebase';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk'
 import reducers from './reducers';
 import  LoginForm from './components/LoginForm'
 
@@ -26,7 +28,7 @@ class App extends Component {
 
     render() {
         return (
-            <Provider store={createStore(reducers)}>
+            <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
                 <View style={{flex:1}}>
                     <LoginForm />
                 </View>
