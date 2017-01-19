@@ -27,8 +27,10 @@ class App extends Component {
     }
 
     render() {
+
+        const store = createStore(reducers,{},applyMiddleware(ReduxThunk))
         return (
-            <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
+            <Provider store={store}>
                 <View style={{flex:1}}>
                     <LoginForm />
                 </View>

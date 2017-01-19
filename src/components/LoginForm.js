@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Text ,View, TouchableWithoutFeedback, LayoutAnimation } from 'react-native'
 import { connect } from 'react-redux';
 import { Card, CardSection, Header, Input, Spinner, Button } from './common';
-import { emailChanged,passwordChanged }  from '../actions';
+import { emailChanged, passwordChanged, loginUser }  from '../actions';
 
 
 class LoginForm extends Component {
@@ -19,12 +19,31 @@ class LoginForm extends Component {
     passwordChange(text) {
         this.props.passwordChanged(text)
     }
-    render() {
 
+    onButtonPress(){
+        const { email, password } = this.props;
+        this.props.loginUser({ email, password })
+    }
+    renderSpinner(){
+        console.log(this.props)
+        if(this.props.loading){
+           return <Spinner />
+        }
+        return (
+            <Button whenPress={this.onButtonPress.bind(this)}>
+                Login
+            </Button>
+        )
+    }
+
+    render() {
+        console.log(this.props)
         return(
                 <View>
+
+                    <Header headerText='Login'/>
                     <Card>
-                        <Header headerText='login'/>
+
 
                         <CardSection>
                             <Input
@@ -40,13 +59,13 @@ class LoginForm extends Component {
                                 onChangeText={this.passwordChange.bind(this)}
                                 placeholder="password"
                                 value={this.props.password}
-                            />
+/>
                         </CardSection>
 
+                        <Text style={styles.errorStyle}>{this.props.error}</Text>
+
                         <CardSection>
-                            <Button>
-                                Login
-                            </Button>
+                            {this.renderSpinner()}
                         </CardSection>
                     </Card>
                 </View>
@@ -55,16 +74,17 @@ class LoginForm extends Component {
 }
 
 const styles = {
-    titleStyle: {
-        fontSize: 18,
-        paddingLeft: 15
+    errorStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'
     }
 }
 
 
 const mapStateToProps = ({ auth }) => {
-
-    return { email:auth.email, password:auth.password };
+    const { email, password, error,loading } = auth
+    return { email, password, error,loading };
 }
 
-export default  connect(mapStateToProps, { emailChanged,passwordChanged })(LoginForm);
+export default  connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
