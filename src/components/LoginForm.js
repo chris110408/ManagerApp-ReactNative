@@ -41,7 +41,7 @@ class LoginForm extends Component {
         return(
                 <View>
 
-                    <Header headerText='Login'/>
+
                     <Card>
 
 

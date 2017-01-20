@@ -2,7 +2,9 @@
  * Created by leichen on 2017/1/16.
  */
 import firebase from 'firebase'
+import { Actions } from 'react-native-router-flux'
 import { EMAIL_CHANGE,PASSWORD_CHANGE,LOGIN_SUCCESS,LOGIN_FAIL,LOGIN_START} from './type'
+
 
 export const emailChanged = (libraryId) => {
     return {
@@ -42,4 +44,6 @@ const loginUserFail = (dispatch,err) => {
 
 const loginUserSuccess = (dispatch, user) => {
     dispatch({ type: LOGIN_SUCCESS, payload: user })
+
+    Actions.main();
 }
