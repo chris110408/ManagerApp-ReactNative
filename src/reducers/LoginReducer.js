@@ -1,7 +1,7 @@
 /**
  * Created by leichen on 2017/1/16.
  */
-import {EMAIL_CHANGE,PASSWORD_CHANGE,LOGIN_SUCCESS,LOGIN_FAIL, LOGIN_START} from '../actions/type'
+import {EMAIL_CHANGE,PASSWORD_CHANGE,LOGIN_SUCCESS,LOGIN_FAIL, LOGIN_START} from '../actions/auth/type'
 
 const INIT_STATE = { email:'', password:'',error:'', loading: false ,user:null};
 

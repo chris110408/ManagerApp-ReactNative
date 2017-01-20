@@ -10,29 +10,29 @@ class EmployeeCreate extends Component {
     render() {
         return (
             <Card>
-                <Cardsection>
+                <CardSection>
                     <Input
                         label="Name"
                         placeholder="Chris"
                     />
-                </Cardsection>
+                </CardSection>
 
-                <Cardsection>
+                <CardSection>
                     <Input
                         label="Phone"
                         placeholder="555-555-5555"
                     />
-                </Cardsection>
+                </CardSection>
 
-                <Cardsection>
+                <CardSection>
 
-                </Cardsection>
+                </CardSection>
 
-                <Cardsection>
+                <CardSection>
                     <Button>
                         Save
                     </Button>
-                </Cardsection>
+                </CardSection>
             </Card>
         )
     }
