@@ -2,7 +2,7 @@
  * Created by leichen on 2017/1/19.
  */
 
-import EMPLOYEE_UPDATE from '../../actions/employee/type';
+import { EMPLOYEE_UPDATE } from '../../actions/employee/type';
 
 const INIT_STATE = {
     name:'',
@@ -13,8 +13,9 @@ const INIT_STATE = {
 export default (state = INIT_STATE, action) => {
     switch (action.type) {
         case EMPLOYEE_UPDATE:
+            console.log(action.payload.prop)
             //ex : action.payload === {prop: 'name', value:'Chris'}
-            return { ...state,[action.payload.prop]: action.payload.value }
+            return { ...state,[action.payload.prop] : action.payload.value }
         default:
             return state;
     }

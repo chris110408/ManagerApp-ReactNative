@@ -25,7 +25,6 @@ class LoginForm extends Component {
         this.props.loginUser({ email, password })
     }
     renderSpinner(){
-        console.log(this.props)
         if(this.props.loading){
            return <Spinner />
         }
@@ -37,7 +36,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.props)
+
         return(
                 <View>
 
