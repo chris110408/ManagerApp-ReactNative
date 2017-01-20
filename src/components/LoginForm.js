@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Text ,View, TouchableWithoutFeedback, LayoutAnimation } from 'react-native'
 import { connect } from 'react-redux';
-import { Card, CardSection, Header, Input, Spinner, Button } from './common';
+import { Card, CardSection, Input, Spinner, Button } from './common';
 import { emailChanged, passwordChanged, loginUser }  from '../actions';
 
 
