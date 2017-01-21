@@ -1,7 +1,7 @@
 /**
  * Created by leichen on 2017/1/19.
  */
-import { EMPLOYEE_UPDATE,EMPLOYEE_CREATE } from './type';
+import { EMPLOYEE_UPDATE,EMPLOYEE_CREATE, EMPLOYEE_FETCH } from './type';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
@@ -25,4 +25,14 @@ export const employeeCreate = ({ name, phone, shift }) => {
             );
     }
 
+}
+
+export const employeesFetch = () => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees`)
+            .on('value',snapshot => {
+                dispatch({ type: EMPLOYEE_FETCH, payload:snapshot.val()})
+            });
+    }
 }
