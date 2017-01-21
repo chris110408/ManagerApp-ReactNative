@@ -1,7 +1,9 @@
 /**
  * Created by leichen on 2017/1/19.
  */
-import { EMPLOYEE_UPDATE } from './type'
+import { EMPLOYEE_UPDATE,EMPLOYEE_CREATE } from './type';
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export const employeeUpdate = ({ prop, value }) => {
     return {
@@ -9,3 +11,18 @@ export const employeeUpdate = ({ prop, value }) => {
         payload: { prop, value }
     };
 };
+
+
+export const employeeCreate = ({ name, phone, shift }) => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees`).push({name,phone,shift})
+            .then(()=> {
+            dispatch({ type: EMPLOYEE_CREATE })
+                    Actions.main({type: 'reset'})
+                }
+            );
+    }
+
+}
