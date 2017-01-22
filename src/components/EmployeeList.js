@@ -45,7 +45,7 @@ class EmployeeList extends Component {
 
 
         return (
-            <View>
+            <View style={{flex:1}}>
                 {this.renderList(this.dataSource)}
             </View>
 

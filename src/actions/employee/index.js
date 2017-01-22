@@ -1,7 +1,7 @@
 /**
  * Created by leichen on 2017/1/19.
  */
-import { EMPLOYEE_UPDATE,EMPLOYEE_CREATE, EMPLOYEE_FETCH } from './type';
+import { EMPLOYEE_UPDATE,EMPLOYEE_CREATE, EMPLOYEE_FETCH,EMPLOYEE_SAVE } from './type';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
@@ -34,5 +34,34 @@ export const employeesFetch = () => {
             .on('value',snapshot => {
                 dispatch({ type: EMPLOYEE_FETCH, payload:snapshot.val()})
             });
+    }
+}
+
+export const employeeSave = ({ name, phone, shift, uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .set({ name, phone, shift })
+            .then( ()=> {
+                dispatch({ type: EMPLOYEE_SAVE })
+                Actions.main({type: 'reset'})
+                }
+            )
+    }
+}
+
+export const employeeDelete= ({ uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return () => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .remove()
+            .then( ()=> {
+                console.log(uid)
+                    Actions.main({type: 'reset'})
+                }
+            )
+
     }
 }
